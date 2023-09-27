@@ -1,0 +1,2 @@
+é basicamente para conseguirmos reutilizar funcoes em diversas areas da nossa aplicacao, ou seja, vamos poder criar funcoes reutilizaveis
+que vao poder ser usadas nos models e nos controllers, de forma modular, flexivel e independente
