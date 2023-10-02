@@ -1,15 +1,16 @@
 package com.eduardomury.todosimple.models;
 
-
+import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+
 @Entity //Usamos essa anotacao para definir uma classe como entidade de um banco de dados, e GERALMENTE, essa entidade é uma tabela, no banco de dados temos entidades como: tabelas, views, indexs, fucntions
 @Table (name = User.TABLE_NAME)
-
 public class User
 {
     public interface CreateUser{} //Sao apenas marcadores de validacoes, que sao chamados de grupos, quando usamos a anotacao @Valited para validar, podemos especificar os grupos que vamos utilizar na validacao, fazendo que a validacao seja valida somente para as anotacoes que estejam associadas a esse grupo
@@ -37,9 +38,20 @@ public class User
     @Size(groups = {CreateUser.class,UpdateUser.class},min = 2,max = 100) // É uma anotacao de uma dependencia do spring de validacao, para validar dentro do programa(e nao no banco de dados) que a coluna tem que ter no minimo 2 digitos e no max 100
     private String password;
 
+    @OneToMany (mappedBy = "user") // esse parametro da anotacao OneToMany indica que o "Many", ou seja, os muitos objetos, que nesse exemplo, sao as tasks, sao mapeadas por one, ou seja, por 1 entidade, visto que 1 entidade tem muitas entidades de um tipo, e muitas entidades podem pertencer/serem mapeadas por 1 entidade, que seria? 
+    private List<Task> taskList = new ArrayList<Task>();
 
-    //Falta sobrescrever o hasCode e o metodo Equals
+    public User()
+    {
 
+    }
+
+    public User(Long id, String username, String password)
+    {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public boolean equals(Object obj)
