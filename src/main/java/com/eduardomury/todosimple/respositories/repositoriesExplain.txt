@@ -1,2 +1,2 @@
-essa pasta "repositories" serve para que o java converse diretamente com o banco de dados, podendo criar, atualizar e deletar coisas do banco de dados
+essa pasta "repositories" serve para que o java converse diretamente com o banco de dados, podendo criar, atualizar e deletar coisas do banco de dados e entre outras funcoes
 ou seja, ele atua diretamente na conversa entre o java e o banco de dados

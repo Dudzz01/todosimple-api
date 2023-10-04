@@ -38,7 +38,7 @@ public class User
     @Size(groups = {CreateUser.class,UpdateUser.class},min = 2,max = 100) // É uma anotacao de uma dependencia do spring de validacao, para validar dentro do programa(e nao no banco de dados) que a coluna tem que ter no minimo 2 digitos e no max 100
     private String password;
 
-    @OneToMany (mappedBy = "user") // esse parametro da anotacao OneToMany indica que o "Many", ou seja, os muitos objetos, que nesse exemplo, sao as tasks, sao mapeadas por one, ou seja, por 1 entidade, visto que 1 entidade tem muitas entidades de um tipo, e muitas entidades podem pertencer/serem mapeadas por 1 entidade, que seria? 
+    @OneToMany (mappedBy = "user") // esse parametro da anotacao OneToMany indica que o "Many", ou seja, os muitos objetos, que nesse exemplo, sao as tasks, sao mapeadas por one, ou seja, por 1 entidade, visto que 1 entidade tem muitas entidades de um tipo, e muitas entidades podem pertencer/serem mapeadas por 1 entidade, que seria?
     private List<Task> taskList = new ArrayList<Task>();
 
     public User()
@@ -51,6 +51,38 @@ public class User
         this.id = id;
         this.username = username;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
     }
 
     @Override

@@ -25,7 +25,6 @@ public class Task
     @NotEmpty
     @NotNull
     @Size(min = 1,max = 255)
-
     private String description;
     public Task()
     {
