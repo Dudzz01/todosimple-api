@@ -14,8 +14,8 @@ public class UserService
 {
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private TaskRepository taskRepository;
+    
+
 
     public User findById(Long id)
     {
@@ -29,7 +29,6 @@ public class UserService
     {
         obj.setId(null); //zerando o id pois quando criar um user, termos a certeza que ele criara automatico e sem conflitos um novo user com um ID unico
         obj = userRepository.save(obj); //esse save é um insert de um registro na tabela do banco de dados, estou salvando meu objeto com todos os campos preenchidos no banco de dados, ou seja, estou salvando um registro com todas as colunas preenchidas no meu banco de dados
-        taskRepository.saveAll(obj.getTaskList());
         return obj;
 
     }
@@ -49,7 +48,7 @@ public class UserService
 
         try
         {
-            userRepository.deleteById(id);
+            userRepository.deleteById(id);//nesse caso o try/catch é necessario, pois o User tem uma chave estrangeira que referencia User em Task para haver um relacionamento, logo para haver uma tarefa, é necessario ter uma task, entao se vc deleta um usuario, pode dar erro pois ela tem outros relacionamentos e isso afeta a estrutura de outra entidade, dando inconscistencia ao banco de dados e dando erros
         }
         catch (Exception ex)
         {
