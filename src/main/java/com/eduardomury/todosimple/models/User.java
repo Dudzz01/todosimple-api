@@ -1,5 +1,7 @@
 package com.eduardomury.todosimple.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.*;
@@ -77,6 +79,7 @@ public class User
         this.password = password;
     }
 
+    @JsonIgnore
     public List<Task> getTaskList() {
         return taskList;
     }

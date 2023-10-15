@@ -21,6 +21,8 @@ public class Task
     @JoinColumn(name = "user_id",nullable = false,updatable = false) // Essa anotacao basicamente mapeia que, ok a anotacao ManyToOne criou o relacionamento entre as 2 entidades, criou automaticamente a chave estrangeira, tudo certo, mas qual coluna da tabela tarefas será a chave estrangeira? atraves da anotacao @JoinColumn podemos definir o nome da coluna que sera a chave estrangeira, que nesse caso a coluna "user_id" sera a chave estrangeira
     private User user;
 
+
+
     @Column(name = "description",nullable = false,length = 255)
     @NotEmpty
     @NotNull
