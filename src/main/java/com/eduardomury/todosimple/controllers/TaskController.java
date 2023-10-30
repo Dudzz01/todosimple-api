@@ -2,6 +2,7 @@ package com.eduardomury.todosimple.controllers;
 
 import com.eduardomury.todosimple.models.Task;
 import com.eduardomury.todosimple.services.TaskService;
+import com.eduardomury.todosimple.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +18,9 @@ public class TaskController
 {
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/{id}")
     public ResponseEntity<Task> findById(@PathVariable Long id)
     {
@@ -25,8 +29,9 @@ public class TaskController
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Task>> findAllTasksByUserId(Long userId)
+    public ResponseEntity<List<Task>> findAllTasksByUserId(@PathVariable Long userId)
     {
+        userService.findById(userId); // verificar se existe usuario com
         List<Task> tasksOfUser = taskService.findAllTasksByUserId(userId);
         return ResponseEntity.ok().body(tasksOfUser);
     }
